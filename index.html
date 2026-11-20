@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>かんたん帳簿</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="ledger.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>かんたん帳簿</h1>
+    <dl class="summary">
+      <div><dt>残高</dt><dd id="balance">￥0</dd></div>
+      <div><dt>収入</dt><dd id="income">￥0</dd></div>
+      <div><dt>支出</dt><dd id="expense">￥0</dd></div>
+    </dl>
+    <section aria-labelledby="new-entry">
+      <h2 id="new-entry">取引を登録</h2>
+      <form id="entry-form">
+        <label>日付<input type="date" name="date" required></label>
+        <label>区分<select name="type"><option value="expense">支出</option><option value="income">収入</option></select></label>
+        <label>内容<input name="description" maxlength="80" required placeholder="例：文房具"></label>
+        <label>金額（円）<input type="number" name="amount" min="1" max="999999999" step="1" required></label>
+        <button type="submit">登録</button>
+      </form>
+      <p id="status" role="status"></p>
+    </section>
+    <section aria-labelledby="history">
+      <h2 id="history">取引履歴</h2>
+      <p id="empty">取引はまだありません。</p>
+      <div class="table-wrap" id="history-table" hidden>
+        <table>
+          <thead><tr><th scope="col">日付</th><th scope="col">区分</th><th scope="col">内容</th><th scope="col">金額</th><th scope="col">操作</th></tr></thead>
+          <tbody id="entries"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
